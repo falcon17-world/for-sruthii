@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Sruthiii 💗</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="stars"></div>
+
+  <main class="container">
+
+    <!-- Birthday welcome -->
+    <section class="screen active" id="welcome">
+      <p class="small-text">A little surprise made just for you ✨</p>
+      <h1>Hey, Sruthiii 💗</h1>
+      <p>Before we begin, answer one tiny question...</p>
+
+      <h2>When is your birthday? 🎂</h2>
+      <div class="date-inputs">
+        <input id="day" type="number" placeholder="DD" min="1" max="31">
+        <input id="month" type="number" placeholder="MM" min="1" max="12">
+        <input id="year" type="number" placeholder="YYYY">
+      </div>
+
+      <button id="startBtn">Unlock your surprise ✨</button>
+      <p id="dateError" class="error"></p>
+    </section>
+
+    <!-- Don't click challenge -->
+    <section class="screen" id="challenge">
+      <p class="small-text">Wait... one more thing 👀</p>
+      <h1>Don't click the button!</h1>
+      <p>Seriously, Sruthi. Don't you dare. 😤</p>
+      <button id="dontClickBtn">I won't click it 🙄</button>
+      <p id="clickMessage"></p>
+      <button id="continueBtn" class="hidden">Okay, continue 💗</button>
+    </section>
+
+    <!-- Special message -->
+    <section class="screen" id="message">
+      <p class="small-text">Okay, you caught me...</p>
+      <h1>You're kinda special ✨</h1>
+      <p>So I made a little something for your special day.</p>
+      <button class="nextBtn" data-next="cake">Show me! 🎁</button>
+    </section>
+
+    <!-- Cake -->
+    <section class="screen" id="cake">
+      <p class="small-text">Make a wish, birthday girl 🌙</p>
+      <h1>A cake just for you 🎂</h1>
+
+      <div class="cake">
+        <div class="candles">
+          <span class="flame"></span>
+          <span class="flame"></span>
+          <span class="flame"></span>
+        </div>
+        <div class="cake-top"></div>
+        <div class="cake-middle"></div>
+        <div class="cake-bottom"></div>
+        <div class="plate"></div>
+      </div>
+
+      <p id="cakeMessage">Close your eyes and make a wish!</p>
+      <button id="blowBtn">Blow out the candles 🕯️</button>
+      <button id="cakeContinue" class="hidden nextBtn" data-next="wishes">
+        Continue 💗
+      </button>
+    </section>
+
+    <!-- Birthday wishes -->
+    <section class="screen" id="wishes">
+      <p class="small-text">A few little wishes for you 💌</p>
+      <h1>Dear Sruthiii...</h1>
+      <div class="wish-card" id="wishCard">
+        <span id="wishEmoji">🌷</span>
+        <p id="wishText">May your days be filled with happiness.</p>
+      </div>
+      <p id="wishCount">Wish 1 of 4</p>
+      <button id="wishNext">Next wish ✨</button>
+      <button id="wishContinue" class="hidden nextBtn" data-next="letter">
+        One last thing... 💌
+      </button>
+    </section>
+
+    <!-- Letter -->
+    <section class="screen" id="letter">
+      <p class="small-text">Something from me to you 💗</p>
+      <h1>A little letter</h1>
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-heart">💌</div>
+      </div>
+      <p id="letterHint">Tap the envelope to open it.</p>
+
+      <div id="letterContent" class="letter-content hidden">
+        <p>Some people become important because of years. 🕰️</p>
+        <p>Some because of countless memories. 📸</p>
+        <p>And sometimes...</p>
+        <p>you just meet someone at the right place, and somehow they become one of the nicest parts of your college story. ✨</p>
+        <h2>HAPPY BIRTHDAY, SRUTHI! 🎂💗</h2>
+        <p>I'm really glad I met you. 🫶</p>
+      </div>
+
+      <button id="letterContinue" class="hidden nextBtn" data-next="stars">
+        Look at the stars 🌌
+      </button>
+    </section>
+
+    <!-- Constellation -->
+    <section class="screen" id="stars">
+      <p class="small-text">Some people make ordinary days brighter ✨</p>
+      <h1>Written in the stars</h1>
+      <div class="constellation">
+        <span>✦</span><span>·</span><span>✧</span>
+        <span>·</span><span>✦</span><span>·</span>
+        <span>✧</span><span>·</span><span>✦</span>
+        <h2>SRUTHI</h2>
+        <p>06 · 11 · 2008</p>
+      </div>
+      <p>May this year bring you beautiful beginnings. 🌙</p>
+      <button class="nextBtn" data-next="secret">One tiny secret 🤫</button>
+    </section>
+
+    <!-- Secret heart -->
+    <section class="screen" id="secret">
+      <p class="small-text">Psst... tap the heart 💗</p>
+      <h1>A little happiness for you</h1>
+      <button id="heartBtn" class="heart-button">💗</button>
+      <p id="heartMessage">Go on, tap it!</p>
+      <button id="secretContinue" class="hidden nextBtn" data-next="final">
+        Your final surprise 🎁
+      </button>
+    </section>
+
+    <!-- Final reveal -->
+    <section class="screen" id="final">
+      <p class="small-text">And that's not all...</p>
+      <h1>Happy Birthday, Sruthiii! 🎂</h1>
+      <p>Keep smiling, keep dreaming, and keep being wonderfully you. 💗</p>
+      <div class="final-gift">🎁</div>
+      <button id="giftBtn">Open your final gift ✨</button>
+      <p id="finalMessage" class="hidden">
+        Here's to new memories, happy moments, and an amazing year ahead! 🫶🌷
+      </p>
+      <p class="signature">Made with 💗 just for you.</p>
+    </section>
+
+  </main>
+
+  <div id="effects"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
