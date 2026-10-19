@@ -1,159 +1,629 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Sruthiii 💗</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-  <div class="stars"></div>
+:root {
+  --pink: #ff8fbd;
+  --light-pink: #ffd6e7;
+  --purple: #b9a0ff;
+  --white: #fff8fc;
+  --muted: #d9c9e8;
+}
 
-  <main class="container">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <!-- Birthday welcome -->
-    <section class="screen active" id="welcome">
-      <p class="small-text">A little surprise made just for you ✨</p>
-      <h1>Hey, Sruthiii 💗</h1>
-      <p>Before we begin, answer one tiny question...</p>
+html {
+  scroll-behavior: smooth;
+}
 
-      <h2>When is your birthday? 🎂</h2>
-      <div class="date-inputs">
-        <input id="day" type="number" placeholder="DD" min="1" max="31">
-        <input id="month" type="number" placeholder="MM" min="1" max="12">
-        <input id="year" type="number" placeholder="YYYY">
-      </div>
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #100d24, #21132f, #35172e);
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
 
-      <button id="startBtn">Unlock your surprise ✨</button>
-      <p id="dateError" class="error"></p>
-    </section>
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, #a36aff22, transparent 30%),
+    radial-gradient(circle at 85% 75%, #ff76b522, transparent 35%);
+  z-index: -2;
+}
 
-    <!-- Don't click challenge -->
-    <section class="screen" id="challenge">
-      <p class="small-text">Wait... one more thing 👀</p>
-      <h1>Don't click the button!</h1>
-      <p>Seriously, Sruthi. Don't you dare. 😤</p>
-      <button id="dontClickBtn">I won't click it 🙄</button>
-      <p id="clickMessage"></p>
-      <button id="continueBtn" class="hidden">Okay, continue 💗</button>
-    </section>
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 100px, #ffd6e7, transparent),
+    radial-gradient(2px 2px at 160px 60px, #fff, transparent),
+    radial-gradient(1px 1px at 220px 160px, #c7b4ff, transparent),
+    radial-gradient(2px 2px at 300px 40px, #fff, transparent);
+  background-size: 340px 220px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
 
-    <!-- Special message -->
-    <section class="screen" id="message">
-      <p class="small-text">Okay, you caught me...</p>
-      <h1>You're kinda special ✨</h1>
-      <p>So I made a little something for your special day.</p>
-      <button class="nextBtn" data-next="cake">Show me! 🎁</button>
-    </section>
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    <!-- Cake -->
-    <section class="screen" id="cake">
-      <p class="small-text">Make a wish, birthday girl 🌙</p>
-      <h1>A cake just for you 🎂</h1>
+.screen {
+  display: none;
+  width: min(100%, 650px);
+  padding: 35px 25px;
+  border: 1px solid #ffffff20;
+  border-radius: 28px;
+  background: #ffffff0b;
+  box-shadow: 0 15px 60px #00000030;
+  backdrop-filter: blur(12px);
+  animation: appear 0.8s ease both;
+}
 
-      <div class="cake">
-        <div class="candles">
-          <span class="flame"></span>
-          <span class="flame"></span>
-          <span class="flame"></span>
-        </div>
-        <div class="cake-top"></div>
-        <div class="cake-middle"></div>
-        <div class="cake-bottom"></div>
-        <div class="plate"></div>
-      </div>
+.screen.active {
+  display: block;
+}
 
-      <p id="cakeMessage">Close your eyes and make a wish!</p>
-      <button id="blowBtn">Blow out the candles 🕯️</button>
-      <button id="cakeContinue" class="hidden nextBtn" data-next="wishes">
-        Continue 💗
-      </button>
-    </section>
+h1 {
+  margin: 12px 0 18px;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1.2;
+  color: var(--light-pink);
+  text-shadow: 0 0 25px #ff8fbd35;
+}
 
-    <!-- Birthday wishes -->
-    <section class="screen" id="wishes">
-      <p class="small-text">A few little wishes for you 💌</p>
-      <h1>Dear Sruthiii...</h1>
-      <div class="wish-card" id="wishCard">
-        <span id="wishEmoji">🌷</span>
-        <p id="wishText">May your days be filled with happiness.</p>
-      </div>
-      <p id="wishCount">Wish 1 of 4</p>
-      <button id="wishNext">Next wish ✨</button>
-      <button id="wishContinue" class="hidden nextBtn" data-next="letter">
-        One last thing... 💌
-      </button>
-    </section>
+h2 {
+  margin: 22px 0 15px;
+  font-size: 1.3rem;
+}
 
-    <!-- Letter -->
-    <section class="screen" id="letter">
-      <p class="small-text">Something from me to you 💗</p>
-      <h1>A little letter</h1>
-      <div class="envelope" id="envelope">
-        <div class="envelope-flap"></div>
-        <div class="envelope-heart">💌</div>
-      </div>
-      <p id="letterHint">Tap the envelope to open it.</p>
+p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 10px 0;
+}
 
-      <div id="letterContent" class="letter-content hidden">
-        <p>Some people become important because of years. 🕰️</p>
-        <p>Some because of countless memories. 📸</p>
-        <p>And sometimes...</p>
-        <p>you just meet someone at the right place, and somehow they become one of the nicest parts of your college story. ✨</p>
-        <h2>HAPPY BIRTHDAY, SRUTHI! 🎂💗</h2>
-        <p>I'm really glad I met you. 🫶</p>
-      </div>
+.small-text {
+  color: var(--pink);
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
 
-      <button id="letterContinue" class="hidden nextBtn" data-next="stars">
-        Look at the stars 🌌
-      </button>
-    </section>
+button {
+  margin: 15px 5px 5px;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff8fbd, #c7a0ff);
+  color: #29132d;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 25px #ff8fbd25;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
 
-    <!-- Constellation -->
-    <section class="screen" id="stars">
-      <p class="small-text">Some people make ordinary days brighter ✨</p>
-      <h1>Written in the stars</h1>
-      <div class="constellation">
-        <span>✦</span><span>·</span><span>✧</span>
-        <span>·</span><span>✦</span><span>·</span>
-        <span>✧</span><span>·</span><span>✦</span>
-        <h2>SRUTHI</h2>
-        <p>06 · 11 · 2008</p>
-      </div>
-      <p>May this year bring you beautiful beginnings. 🌙</p>
-      <button class="nextBtn" data-next="secret">One tiny secret 🤫</button>
-    </section>
+button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px #ff8fbd45;
+}
 
-    <!-- Secret heart -->
-    <section class="screen" id="secret">
-      <p class="small-text">Psst... tap the heart 💗</p>
-      <h1>A little happiness for you</h1>
-      <button id="heartBtn" class="heart-button">💗</button>
-      <p id="heartMessage">Go on, tap it!</p>
-      <button id="secretContinue" class="hidden nextBtn" data-next="final">
-        Your final surprise 🎁
-      </button>
-    </section>
+button:active {
+  transform: scale(0.96);
+}
 
-    <!-- Final reveal -->
-    <section class="screen" id="final">
-      <p class="small-text">And that's not all...</p>
-      <h1>Happy Birthday, Sruthiii! 🎂</h1>
-      <p>Keep smiling, keep dreaming, and keep being wonderfully you. 💗</p>
-      <div class="final-gift">🎁</div>
-      <button id="giftBtn">Open your final gift ✨</button>
-      <p id="finalMessage" class="hidden">
-        Here's to new memories, happy moments, and an amazing year ahead! 🫶🌷
-      </p>
-      <p class="signature">Made with 💗 just for you.</p>
-    </section>
+button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
 
-  </main>
+input {
+  width: 95px;
+  padding: 13px 8px;
+  margin: 8px 4px;
+  border: 1px solid #ffffff35;
+  border-radius: 14px;
+  outline: none;
+  background: #ffffff12;
+  color: white;
+  font: inherit;
+  text-align: center;
+}
 
-  <div id="effects"></div>
+input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 15px #ff8fbd25;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+input::placeholder {
+  color: #cdbbd9;
+}
+
+.date-inputs {
+  margin: 15px 0;
+}
+
+.error {
+  color: #ff9fbc;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#welcome > p:not(.small-text),
+#challenge > p,
+#message > p,
+#final > p {
+  max-width: 460px;
+  margin: 12px auto;
+}
+
+/* =========================
+   CAKE AND THREE CANDLES
+========================= */
+
+.cake {
+  position: relative;
+  width: 260px;
+  height: 230px;
+  margin: 35px auto 20px;
+}
+
+.cake-bottom,
+.cake-middle,
+.cake-top {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 12px 12px 8px 8px;
+  box-shadow: inset -10px 0 #00000012;
+}
+
+.cake-bottom {
+  bottom: 25px;
+  width: 210px;
+  height: 65px;
+  background: linear-gradient(#ff9ac7, #ed6da9);
+}
+
+.cake-middle {
+  bottom: 83px;
+  width: 175px;
+  height: 55px;
+  background: linear-gradient(#ffd9e8, #ff9fc8);
+}
+
+.cake-top {
+  bottom: 132px;
+  width: 145px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff0f6;
+  z-index: 2;
+}
+
+.plate {
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 230px;
+  height: 15px;
+  border-radius: 50%;
+  background: #d9c9ff;
+}
+
+/* Candle holder positions all three candle sticks */
+
+.candles {
+  position: absolute;
+  left: 50%;
+  bottom: 157px;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 22px;
+  width: max-content;
+  height: 45px;
+}
+
+/* Disable the old CSS-generated candle sticks */
+
+.candles::before,
+.candles::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Each candle has its own visible stick */
+
+.candle {
+  position: relative;
+  display: block;
+  flex: 0 0 12px;
+  width: 12px;
+  height: 35px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff 0 5px,
+    #ff8fbd 5px 10px
+  );
+}
+
+/* Each candle has its own flame */
+
+.candle .flame {
+  position: absolute;
+  display: block;
+  left: 2px;
+  bottom: calc(100% + 2px);
+  width: 9px;
+  height: 15px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  background: #ffdb72;
+  box-shadow: 0 0 18px #ffdb72;
+  animation: flicker 0.7s infinite alternate;
+}
+
+.cake.blown .candle .flame {
+  display: none;
+}
+
+/* =========================
+   BIRTHDAY WISHES
+========================= */
+
+.wish-card {
+  min-height: 190px;
+  margin: 25px auto;
+  padding: 35px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffb8d82b;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ff9fc718, #b9a0ff18);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#wishEmoji {
+  font-size: 3rem;
+}
+
+#wishText {
+  font-size: 1.05rem;
+  color: var(--white);
+}
+
+#wishCount {
+  font-size: 0.8rem;
+}
+
+/* =========================
+   ENVELOPE AND LETTER
+========================= */
+
+.envelope {
+  position: relative;
+  width: 190px;
+  height: 125px;
+  margin: 35px auto 20px;
+  border-radius: 8px;
+  background: #ff9fc7;
+  cursor: pointer;
+  box-shadow: 0 10px 30px #00000030;
+  transition: transform 0.4s;
+}
+
+.envelope:hover {
+  transform: translateY(-5px);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 95px solid transparent;
+  border-right: 95px solid transparent;
+  border-top: 75px solid #ffd4e6;
+  transform-origin: top;
+  transition: transform 0.5s;
+  z-index: 2;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-heart {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+}
+
+.letter-content {
+  margin: 25px auto;
+  padding: 25px 20px;
+  border: 1px solid #ffb8d855;
+  border-radius: 18px;
+  background: #fff4fa;
+  color: #54314f;
+  animation: appear 0.7s ease both;
+}
+
+.letter-content p {
+  color: #69465f;
+  margin: 12px 0;
+}
+
+.letter-content h2 {
+  color: #c34f88;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+}
+
+/* =========================
+   CONSTELLATION
+========================= */
+
+.constellation {
+  margin: 25px auto;
+  padding: 25px 10px;
+  border-radius: 22px;
+  background: #ffffff08;
+}
+
+.constellation span {
+  display: inline-block;
+  margin: 8px;
+  color: #ffe7a3;
+  font-size: 1.8rem;
+  animation: twinkle 2s infinite alternate;
+}
+
+.constellation h2 {
+  margin-top: 25px;
+  letter-spacing: 8px;
+  color: #ffe3f0;
+}
+
+.constellation p {
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   SECRET HEART
+========================= */
+
+.heart-button {
+  width: 130px;
+  height: 130px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 4rem;
+  animation: heartbeat 1.2s infinite;
+}
+
+.heart-button:hover {
+  animation: heartbeat 0.5s infinite;
+}
+
+.heart-float {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  font-size: 25px;
+  animation: floatUp 3s ease-out forwards;
+  z-index: 20;
+}
+
+/* =========================
+   FINAL SURPRISE
+========================= */
+
+.final-gift {
+  margin: 20px;
+  font-size: 5rem;
+  animation: bob 2s infinite ease-in-out;
+}
+
+.signature {
+  margin-top: 30px !important;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: var(--pink);
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  z-index: 30;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flicker {
+  from {
+    transform: rotate(-45deg) scale(0.9);
+  }
+  to {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 480px) {
+  .container {
+    padding: 18px 12px;
+  }
+
+  .screen {
+    padding: 28px 16px;
+    border-radius: 22px;
+  }
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  input {
+    width: 82px;
+  }
+
+  .cake {
+    transform: scale(0.9);
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+/* FINAL CANDLE VISIBILITY FIX */
+
+.cake {
+  position: relative;
+  overflow: visible;
+}
+
+.candles {
+  position: absolute;
+  left: 50%;
+  bottom: 157px;
+  transform: translateX(-50%);
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 22px;
+  width: 80px;
+  height: 45px;
+  z-index: 20;
+  overflow: visible;
+}
+
+.candle {
+  display: block !important;
+  position: relative;
+  flex: 0 0 12px;
+  width: 12px;
+  height: 35px;
+  background: #ff8fbd !important;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.candle .flame {
+  display: block !important;
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  left: 0;
+  bottom: calc(100% + 3px);
+  background: #ffdb72 !important;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 18px #ffdb72;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 21;
+}
+
+.candles::before,
+.candles::after {
+  content: none !important;
+}
+
+.cake.blown .candle .flame {
+  display: none !important;
+}
