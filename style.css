@@ -566,3 +566,64 @@ input::placeholder {
     margin-bottom: 10px;
   }
 }
+
+/* FINAL CANDLE VISIBILITY FIX */
+
+.cake {
+  position: relative;
+  overflow: visible;
+}
+
+.candles {
+  position: absolute;
+  left: 50%;
+  bottom: 157px;
+  transform: translateX(-50%);
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 22px;
+  width: 80px;
+  height: 45px;
+  z-index: 20;
+  overflow: visible;
+}
+
+.candle {
+  display: block !important;
+  position: relative;
+  flex: 0 0 12px;
+  width: 12px;
+  height: 35px;
+  background: #ff8fbd !important;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.candle .flame {
+  display: block !important;
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  left: 0;
+  bottom: calc(100% + 3px);
+  background: #ffdb72 !important;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 18px #ffdb72;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 21;
+}
+
+.candles::before,
+.candles::after {
+  content: none !important;
+}
+
+.cake.blown .candle .flame {
+  display: none !important;
+}
