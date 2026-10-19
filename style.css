@@ -130,6 +130,11 @@ button:active {
   transform: scale(0.96);
 }
 
+button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 input {
   width: 95px;
   padding: 13px 8px;
@@ -173,12 +178,14 @@ input::placeholder {
   margin: 12px auto;
 }
 
-/* Cake */
+/* =========================
+   CAKE AND THREE CANDLES
+========================= */
 
 .cake {
   position: relative;
-  width: 220px;
-  height: 210px;
+  width: 260px;
+  height: 230px;
   margin: 35px auto 20px;
 }
 
@@ -226,67 +233,70 @@ input::placeholder {
   background: #d9c9ff;
 }
 
+/* Candle holder positions all three candle sticks */
+
 .candles {
   position: absolute;
   left: 50%;
-  bottom: 145px;
-  z-index: 3;
-  display: flex;
-  gap: 24px;
+  bottom: 157px;
   transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 22px;
+  width: max-content;
+  height: 45px;
 }
+
+/* Disable the old CSS-generated candle sticks */
 
 .candles::before,
 .candles::after {
-  content: '';
-  width: 8px;
+  content: none !important;
+  display: none !important;
+}
+
+/* Each candle has its own visible stick */
+
+.candle {
+  position: relative;
+  display: block;
+  flex: 0 0 12px;
+  width: 12px;
   height: 35px;
   border-radius: 4px;
   background: repeating-linear-gradient(
-    45deg, #fff 0 5px, #ff8fbd 5px 10px
+    45deg,
+    #ffffff 0 5px,
+    #ff8fbd 5px 10px
   );
 }
 
-.candles {
-  width: 80px;
-  height: 35px;
-  justify-content: space-between;
-}
+/* Each candle has its own flame */
 
-.candles::before {
-  order: 1;
-}
-
-.candles::after {
-  order: 3;
-}
-
-.flame {
+.candle .flame {
   position: absolute;
-  bottom: 32px;
-  left: 36px;
-  width: 10px;
-  height: 17px;
+  display: block;
+  left: 2px;
+  bottom: calc(100% + 2px);
+  width: 9px;
+  height: 15px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
+  transform-origin: center;
   background: #ffdb72;
   box-shadow: 0 0 18px #ffdb72;
   animation: flicker 0.7s infinite alternate;
 }
 
-.flame:nth-child(2) {
-  left: 0;
-}
-
-.flame:nth-child(3) {
-  left: 72px;
-}
-
-.cake.blown .flame {
+.cake.blown .candle .flame {
   display: none;
 }
 
-/* Birthday wishes */
+/* =========================
+   BIRTHDAY WISHES
+========================= */
 
 .wish-card {
   min-height: 190px;
@@ -315,7 +325,9 @@ input::placeholder {
   font-size: 0.8rem;
 }
 
-/* Envelope and letter */
+/* =========================
+   ENVELOPE AND LETTER
+========================= */
 
 .envelope {
   position: relative;
@@ -380,7 +392,9 @@ input::placeholder {
   font-size: 1.8rem;
 }
 
-/* Stars */
+/* =========================
+   CONSTELLATION
+========================= */
 
 .constellation {
   margin: 25px auto;
@@ -408,7 +422,9 @@ input::placeholder {
   font-size: 0.8rem;
 }
 
-/* Secret heart */
+/* =========================
+   SECRET HEART
+========================= */
 
 .heart-button {
   width: 130px;
@@ -432,7 +448,9 @@ input::placeholder {
   z-index: 20;
 }
 
-/* Final surprise */
+/* =========================
+   FINAL SURPRISE
+========================= */
 
 .final-gift {
   margin: 20px;
@@ -455,7 +473,9 @@ input::placeholder {
   animation: fall 3s linear forwards;
 }
 
-/* Animations */
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes appear {
   from {
@@ -469,18 +489,30 @@ input::placeholder {
 }
 
 @keyframes twinkle {
-  from { opacity: 0.45; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes flicker {
-  from { transform: rotate(-45deg) scale(0.9); }
-  to { transform: rotate(-45deg) scale(1.1); }
+  from {
+    transform: rotate(-45deg) scale(0.9);
+  }
+  to {
+    transform: rotate(-45deg) scale(1.1);
+  }
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 @keyframes floatUp {
@@ -491,8 +523,12 @@ input::placeholder {
 }
 
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes fall {
@@ -501,6 +537,10 @@ input::placeholder {
     opacity: 0;
   }
 }
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
 @media (max-width: 480px) {
   .container {
